@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D A Logo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+        }
+        
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        #info {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        #buttons-container {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+        }
+        
+        .nav-button {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        /* Social Page Styles */
+        .social-page {
+            display: none;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .social-page.active {
+            display: block;
+        }
+        
+        #logo-mini {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .social-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            gap: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+        
+        .social-icon {
+            width: 150px;
+            height: 150px;
+            background: white;
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        
+        .social-icon svg {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .social-username {
+            font-size: 2em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            padding: 12px 30px;
+            font-size: 1em;
+            font-weight: bold;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            #buttons-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-button {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Page -->
+    <div id="home-page">
+        <div id="info">
+            <h1>Welcome</h1>
+            <p>all aln Social Media</p>
+        </div>
+        <div id="canvas-container"></div>
+        <div id="buttons-container">
+            <button class="nav-button" onclick="showPage('instagram')">Instagram</button>
+            <button class="nav-button" onclick="showPage('discord')">Discord</button>
+            <button class="nav-button" onclick="showPage('twitch')">Twitch</button>
+        </div>
+    </div>
+
+    <!-- Instagram Page -->
+    <div id="instagram-page" class="social-page">
+        <div id="logo-mini"></div>
+        <button class="back-button" onclick="showPage('home')">← Back</button>
+        <div class="social-content">
+            <a href="https://www.instagram.com/alnxdd0/" target="_blank" class="social-link">
+                <div class="social-icon">
+                    <svg viewBox="0 0 24 24" fill="url(#instagram-gradient)">
+                        <defs>
+                            <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#f09433;stop-opacity:1" />
+                                <stop offset="25%" style="stop-color:#e6683c;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#dc2743;stop-opacity:1" />
+                                <stop offset="75%" style="stop-color:#cc2366;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#bc1888;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </div>
+                <div class="social-username">ALNXDD</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Discord Page -->
+    <div id="discord-page" class="social-page">
+        <div id="logo-mini-discord"></div>
+        <button class="back-button" onclick="showPage('home')">← Back</button>
+        <div class="social-content">
+            <a href="https://discord.gg/KnPXEv8urg" target="_blank" class="social-link">
+                <div class="social-icon">
+                    <svg viewBox="0 0 24 24" fill="#5865F2">
+                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                    </svg>
+                </div>
+                <div class="social-username">ALNXDD</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Twitch Page -->
+    <div id="twitch-page" class="social-page">
+        <div id="logo-mini-twitch"></div>
+        <button class="back-button" onclick="showPage('home')">← Back</button>
+        <div class="social-content">
+            <a href="https://www.twitch.tv/alnxdd" target="_blank" class="social-link">
+                <div class="social-icon">
+                    <svg viewBox="0 0 24 24" fill="#9146FF">
+                        <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
+                    </svg>
+                </div>
+                <div class="social-username">ALNXDD</div>
+            </a>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        let scene, camera, renderer, logo;
+        let mouseX = 0, mouseY = 0;
+        let targetRotationX = 0, targetRotationY = 0;
+        let isDragging = false;
+        let currentPage = 'home';
+        
+        function init() {
+            scene = new THREE.Scene();
+            
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+            
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+            
+            createLogo();
+            
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
+            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight1.position.set(5, 5, 5);
+            scene.add(directionalLight1);
+            
+            const directionalLight2 = new THREE.DirectionalLight(0x667eea, 0.5);
+            directionalLight2.position.set(-5, -5, 5);
+            scene.add(directionalLight2);
+            
+            // Mouse events
+            renderer.domElement.addEventListener('mousedown', onMouseDown);
+            renderer.domElement.addEventListener('mousemove', onMouseMove);
+            renderer.domElement.addEventListener('mouseup', onMouseUp);
+            renderer.domElement.addEventListener('touchstart', onTouchStart);
+            renderer.domElement.addEventListener('touchmove', onTouchMove);
+            renderer.domElement.addEventListener('touchend', onTouchEnd);
+            
+            window.addEventListener('resize', onWindowResize);
+            
+            // Create mini logos
+            createMiniLogos();
+        }
+        
+        function createLogo() {
+            const shape = new THREE.Shape();
+            
+            shape.moveTo(-1, -1.5);
+            shape.lineTo(-0.7, -1.5);
+            shape.lineTo(0, 1.5);
+            shape.lineTo(0.3, 1.5);
+            shape.lineTo(0.7, 0);
+            shape.lineTo(0.4, 0);
+            shape.lineTo(0.1, 1);
+            shape.lineTo(-0.1, 1);
+            shape.lineTo(-0.4, 0);
+            shape.lineTo(-0.7, 0);
+            shape.lineTo(-1, -1.5);
+            
+            const hole = new THREE.Path();
+            hole.moveTo(-0.25, 0.3);
+            hole.lineTo(0.25, 0.3);
+            hole.lineTo(0, 1);
+            hole.lineTo(-0.25, 0.3);
+            shape.holes.push(hole);
+            
+            const extrudeSettings = {
+                depth: 0.5,
+                bevelEnabled: true,
+                bevelThickness: 0.1,
+                bevelSize: 0.1,
+                bevelSegments: 3
+            };
+            
+            const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+            geometry.center();
+            
+            const material = new THREE.MeshPhongMaterial({
+                color: 0xffffff,
+                shininess: 100,
+                specular: 0x444444
+            });
+            
+            logo = new THREE.Mesh(geometry, material);
+            scene.add(logo);
+        }
+        
+        function createMiniLogos() {
+            const miniScene = new THREE.Scene();
+            const miniCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+            miniCamera.position.z = 3;
+            
+            const miniRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            miniRenderer.setSize(80, 80);
+            miniRenderer.setClearColor(0x000000, 0);
+            
+            const shape = new THREE.Shape();
+            shape.moveTo(-1, -1.5);
+            shape.lineTo(-0.7, -1.5);
+            shape.lineTo(0, 1.5);
+            shape.lineTo(0.3, 1.5);
+            shape.lineTo(0.7, 0);
+            shape.lineTo(0.4, 0);
+            shape.lineTo(0.1, 1);
+            shape.lineTo(-0.1, 1);
+            shape.lineTo(-0.4, 0);
+            shape.lineTo(-0.7, 0);
+            shape.lineTo(-1, -1.5);
+            
+            const hole = new THREE.Path();
+            hole.moveTo(-0.25, 0.3);
+            hole.lineTo(0.25, 0.3);
+            hole.lineTo(0, 1);
+            hole.lineTo(-0.25, 0.3);
+            shape.holes.push(hole);
+            
+            const extrudeSettings = {
+                depth: 0.3,
+                bevelEnabled: true,
+                bevelThickness: 0.05,
+                bevelSize: 0.05,
+                bevelSegments: 2
+            };
+            
+            const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+            geometry.center();
+            
+            const material = new THREE.MeshPhongMaterial({
+                color: 0xffffff,
+                shininess: 100
+            });
+            
+            const miniLogo = new THREE.Mesh(geometry, material);
+            miniScene.add(miniLogo);
+            
+            const light1 = new THREE.AmbientLight(0xffffff, 0.6);
+            miniScene.add(light1);
+            
+            const light2 = new THREE.DirectionalLight(0xffffff, 0.8);
+            light2.position.set(3, 3, 3);
+            miniScene.add(light2);
+            
+            miniLogo.rotation.y = 0.3;
+            miniLogo.rotation.x = 0.2;
+            
+            miniRenderer.render(miniScene, miniCamera);
+            
+            document.getElementById('logo-mini').appendChild(miniRenderer.domElement);
+            document.getElementById('logo-mini-discord').appendChild(miniRenderer.domElement.cloneNode(true));
+            document.getElementById('logo-mini-twitch').appendChild(miniRenderer.domElement.cloneNode(true));
+        }
+        
+        function showPage(page) {
+            currentPage = page;
+            document.getElementById('home-page').style.display = page === 'home' ? 'block' : 'none';
+            document.getElementById('instagram-page').classList.toggle('active', page === 'instagram');
+            document.getElementById('discord-page').classList.toggle('active', page === 'discord');
+            document.getElementById('twitch-page').classList.toggle('active', page === 'twitch');
+        }
+        
+        function onMouseDown(e) {
+            isDragging = true;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        }
+        
+        function onMouseMove(e) {
+            if (isDragging) {
+                const deltaX = e.clientX - mouseX;
+                const deltaY = e.clientY - mouseY;
+                
+                targetRotationY += deltaX * 0.01;
+                targetRotationX += deltaY * 0.01;
+                
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            }
+        }
+        
+        function onMouseUp() {
+            isDragging = false;
+        }
+        
+        function onTouchStart(e) {
+            if (e.touches.length === 1) {
+                isDragging = true;
+                mouseX = e.touches[0].clientX;
+                mouseY = e.touches[0].clientY;
+            }
+        }
+        
+        function onTouchMove(e) {
+            if (isDragging && e.touches.length === 1) {
+                const deltaX = e.touches[0].clientX - mouseX;
+                const deltaY = e.touches[0].clientY - mouseY;
+                
+                targetRotationY += deltaX * 0.01;
+                targetRotationX += deltaY * 0.01;
+                
+                mouseX = e.touches[0].clientX;
+                mouseY = e.touches[0].clientY;
+            }
+        }
+        
+        function onTouchEnd() {
+            isDragging = false;
+        }
+        
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            logo.rotation.y += (targetRotationY - logo.rotation.y) * 0.1;
+            logo.rotation.x += (targetRotationX - logo.rotation.x) * 0.1;
+            
+            if (!isDragging && currentPage === 'home') {
+                targetRotationY += 0.005;
+            }
+            
+            renderer.render(scene, camera);
+        }
+        
+        init();
+        animate();
+    </script>
+</body>
+</html>
